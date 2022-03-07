@@ -2,3 +2,4 @@ pandas
 Faker
 sqlalchemy
 mysqlclient
+mysql-connector-python
