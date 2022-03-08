@@ -6,12 +6,11 @@ import time
 import os
 
 DATABASE_PASSWORD =  os.environ.get('DATABASE_PASSWORD')
-DATABASE_URL =  os.environ.get('DATABASE_URL')
 Faker.seed(1) #makes datgen reproductive
 
 fake = Faker()
 fake_data = defaultdict(list)
-
+SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
 for _ in range(1000):
     fake_data["first_name"].append( fake.first_name() )
     fake_data["last_name"].append( fake.last_name() )
@@ -21,7 +20,7 @@ for _ in range(1000):
 df_fake_data = pd.DataFrame(fake_data)
 #engine = create_engine('mysql://root:' + DATABASE_PASSWORD + '@localhost/mydb', echo=False) - local
 #engine = create_engine('mysql+mysqlconnector://root:example@localhost:3306/database') - docker
-engine = create_engine(DATABASE_URL) #heroku
+engine = create_engine(SQLALCHEMY_DATABASE_URI) #heroku
 start = time.time()
 df_fake_data.to_sql('user', con=engine,index=False)
 end = time.time()
