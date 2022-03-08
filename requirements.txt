@@ -3,4 +3,3 @@ faker
 sqlalchemy
 mysqlclient
 mysql-connector-python
-gunicorn
