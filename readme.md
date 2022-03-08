@@ -2,20 +2,10 @@
 ###  docker-compose  up to run database in container
 ####  Запись локально  0.37 - сек  
 ####  Чтение локально  0.016 - сек  
-####  Чтение через heroku  2.33 - сек  
-####  Запись через heroku  0.37 - сек  
+####  Запись через heroku  2.33 - сек  
+####  Чтение через heroku  0.0089 - сек  
 ####  Запись через docker  0.32 - сек
 ####  Запись через docker  0.015 - сек
-####  Чтение локально  0.01 - сек  
-
-config = {
-    "drivername": "mysql+mysqlconnector",
-    "username": "root",
-    "password": "example",
-    "host": "localhost",
-    "port": "3308",
-    "database": "database",
-}
-#192.168.31.144
-#engine = create_engine('mysql://root:' + DATABASE_PASSWORD + '@localhost/mydb', echo=False)
-engine = create_engine(engine.url.URL.create(**config)) #for docker
+####  datagen_write.py обеспечивает генерацию и запись 1000 строк в базу данных,  
+####  read.py - считывание  
+####  для heroku нужно поменять название функции на требуемое для соответствующего теста
