@@ -6,6 +6,7 @@ import time
 import os
 
 DATABASE_PASSWORD =  os.environ.get('DATABASE_PASSWORD')
+DATABASE_URL =  os.environ.get('DATABASE_URL')
 Faker.seed(1) #makes datgen reproductive
 
 fake = Faker()
@@ -19,7 +20,8 @@ for _ in range(1000):
     fake_data["country"].append( fake.country() )
 df_fake_data = pd.DataFrame(fake_data)
 #engine = create_engine('mysql://root:' + DATABASE_PASSWORD + '@localhost/mydb', echo=False) - local
-engine = create_engine('mysql+mysqlconnector://root:example@localhost:3306/database')
+#engine = create_engine('mysql+mysqlconnector://root:example@localhost:3306/database') - docker
+engine = create_engine(DATABASE_URL) #heroku
 start = time.time()
 df_fake_data.to_sql('user', con=engine,index=False)
 end = time.time()

@@ -1,5 +1,6 @@
 pandas
-Faker
+faker
 sqlalchemy
 mysqlclient
 mysql-connector-python
+gunicorn
