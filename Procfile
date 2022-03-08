@@ -1,2 +1,2 @@
-web: python datagen_write.py
-worker: python datagen_write.py, read.py    
+web: python read.py
+worker: python read.py
